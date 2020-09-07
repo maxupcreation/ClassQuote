@@ -21,10 +21,23 @@ class QuoteService {
                                         text: text, author: author, imageData: data)
                                     callback(true, quote)
                                 }
+                                else {
+                                    callback(false, nil)
+                                }
                             }
                         }
+                        else {
+                            callback(false, nil)
+                        }
+                    }
+                    else {
+                        callback(false, nil)
                     }
                 }
+                else {
+                    callback(false, nil)
+                }
+                
             }
             
         }
