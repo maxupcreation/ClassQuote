@@ -122,6 +122,7 @@
 		9C738A31250272440042C326 /* ClassQuoteTests */ = {
 			isa = PBXGroup;
 			children = (
+				9C738A29250272420042C326 /* Info.plist */,
 				9C738A32250272440042C326 /* ClassQuoteTests.swift */,
 			);
 			path = ClassQuoteTests;
@@ -142,7 +143,6 @@
 				9C738A1E2502723D0042C326 /* Main.storyboard */,
 				9C738A24250272420042C326 /* Assets.xcassets */,
 				9C738A26250272420042C326 /* LaunchScreen.storyboard */,
-				9C738A29250272420042C326 /* Info.plist */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,14 +12,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ClassQuote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J1B-ob-90E" userLabel="QuoteStack View">
-                                <rect key="frame" x="20" y="20" width="280" height="300"/>
+                                <rect key="frame" x="20" y="20" width="335" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-Sv-Tep">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="300"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -27,10 +27,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="F6A-Eo-cQa" userLabel="ImageQuoteStack View">
-                                <rect key="frame" x="20" y="20" width="280" height="300"/>
+                                <rect key="frame" x="20" y="20" width="335" height="300"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMX-2D-kbF">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
+                                        <rect key="frame" x="27.5" y="0.0" width="280" height="300"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -38,16 +38,15 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qwl-JP-JNi" userLabel="ButtonStack View">
-                                <rect key="frame" x="20" y="483" width="280" height="65"/>
+                                <rect key="frame" x="20" y="582" width="335" height="65"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hu1-Y4-aBX">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="65"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="New quote"/>
                                         <connections>
                                             <action selector="quoteActionButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="mm4-JU-iSs"/>
-                                            <action selector="quoteActionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RrY-08-XFo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -56,10 +55,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="lV9-5o-h7g" userLabel="authorStack View">
-                                <rect key="frame" x="20" y="340" width="280" height="20.5"/>
+                                <rect key="frame" x="20" y="340" width="335" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A7-Qp-vb5">
-                                        <rect key="frame" x="230" y="0.0" width="50" height="20.5"/>
+                                        <rect key="frame" x="285" y="0.0" width="50" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -86,9 +85,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="author" destination="5A7-Qp-vb5" id="TAY-o0-6fH"/>
+                        <outlet property="authorLabel" destination="5A7-Qp-vb5" id="9JZ-87-su8"/>
                         <outlet property="imageView" destination="qMX-2D-kbF" id="rJm-KI-p5g"/>
-                        <outlet property="quote" destination="zc2-Sv-Tep" id="7zO-g7-hd8"/>
+                        <outlet property="quoteLabel" destination="zc2-Sv-Tep" id="mIk-g0-Zzz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
