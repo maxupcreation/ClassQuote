@@ -2,33 +2,40 @@
 //  ClassQuoteTests.swift
 //  ClassQuoteTests
 //
-//  Created by Maxime on 04/09/2020.
+//  Created by Maxime on 11/09/2020.
 //  Copyright © 2020 Maxime. All rights reserved.
 //
 
 import XCTest
-@testable import ClassQuote
 
 class ClassQuoteTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    class FakeResponseData {
+        // MARK: - Data
+        static var quoteCorrectData: Data? {
+            let bundle = Bundle(for: FakeResponseData.self)
+            let url = bundle.url(forResource: "Quote", withExtension: "json")!
+            return try! Data(contentsOf: url)
         }
+
+        static let quoteIncorrectData = "erreur".data(using: .utf8)!
+
+        static let imageData = "image".data(using: .utf8)!
+
+        // MARK: - Response
+        static let responseOK = HTTPURLResponse(
+            url: URL(string: "https://openclassrooms.com")!,
+            statusCode: 200, httpVersion: nil, headerFields: [:])!
+
+        static let responseKO = HTTPURLResponse(
+            url: URL(string: "https://openclassrooms.com")!,
+            statusCode: 500, httpVersion: nil, headerFields: [:])!
+
+
+        // MARK: - Error
+        class QuoteError: Error {}
+        static let error = QuoteError()
     }
+
 
 }

@@ -16,19 +16,31 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var newQuoteButton: UIButton!
     
     var quoteService = QuoteService()
     
     
     @IBAction func quoteActionButton() {
-        QuoteService.getQuote { (success, quote) in
-            if success, let quote = quote {
-                self.update(quote: quote)
-            } else {
-                self.presentAlert()
+        QuoteService.getQuote{(success, quote) in
+            self.toggleActivityIndicator(shown: false)
+            DispatchQueue.main.async {
+                if success, let quote = quote {
+                    self.update(quote: quote)
+                } else {
+                    self.presentAlert()
+                }
             }
         }
-        
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = !shown
+            self.newQuoteButton.isHidden = shown
+        }
     }
     
     

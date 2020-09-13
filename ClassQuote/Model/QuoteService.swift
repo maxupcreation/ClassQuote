@@ -1,15 +1,20 @@
 import Foundation
 
 class QuoteService {
+    
+    
+   // static var shared = QuoteService()
+   // private init(){}
+    
     static let quoteUrl = URL(string: "https://api.forismatic.com/api/1.0/")!
     static let pictureUrl = URL(string: "https://source.unsplash.com/random/1000x1000")!
+  static var session = URLSession(configuration: .default)
     
-    static func getQuote(callback: @escaping (Bool, Quote?) -> Void)  {
+   static func getQuote(callback: @escaping (Bool, Quote?) -> Void)  {
         let request = createQuoteRequest()
-        let session = URLSession(configuration: .default)
-        
+       
         let task = session.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.main.async {
+        
                 guard let data = data, error == nil else {
                     callback(false, nil)
                     return }
@@ -38,15 +43,12 @@ class QuoteService {
                     let quote = Quote(text: text, author: author, imageData: data)
                     callback(true, quote)
                 }
-            }
+            
             
             
         }
         task.resume()
     }
-    
-    
-    
     
     private static func createQuoteRequest() -> URLRequest {
         var request = URLRequest(url: quoteUrl)
