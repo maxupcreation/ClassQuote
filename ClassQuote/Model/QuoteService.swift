@@ -2,50 +2,50 @@ import Foundation
 
 class QuoteService {
     
-    static let shared: QuoteService
-     private init(){}
-
-   // static var shared = QuoteService()
-   // private init(){}
+    static let shared = QuoteService()
+    private init(){}
+    
+    // static var shared = QuoteService()
+    // private init(){}
     
     static let quoteUrl = URL(string: "https://api.forismatic.com/api/1.0/")!
     static let pictureUrl = URL(string: "https://source.unsplash.com/random/1000x1000")!
-  static var session = URLSession(configuration: .default)
-   static var imageSession = URLSession(configuration: .default)
+    static var session = URLSession(configuration: .default)
+    static var imageSession = URLSession(configuration: .default)
     
-   static func getQuote(callback: @escaping (Bool, Quote?) -> Void)  {
+    static func getQuote(callback: @escaping (Bool, Quote?) -> Void)  {
         let request = createQuoteRequest()
-       
-        let task = session.dataTask(with: request) { (data, response, error) in
         
-                guard let data = data, error == nil else {
-                    callback(false, nil)
-                    return }
-                
-                
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            guard let data = data, error == nil else {
                 callback(false, nil)
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                return }
+            
+            
+            callback(false, nil)
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                callback(false, nil)
+                return
+            }
+            
+            
+            guard let responseJSON = try? JSONDecoder().decode([String: String].self, from: data),
+                let text = responseJSON["quoteText"],
+                let author = responseJSON["quoteAuthor"] else {
                     callback(false, nil)
                     return
+            }
+            
+            getImage { (data) in
+                guard let data = data else {
+                    callback(false, nil)
+                    return
+                    
                 }
-                
-                
-                guard let responseJSON = try? JSONDecoder().decode([String: String].self, from: data),
-                    let text = responseJSON["quoteText"],
-                    let author = responseJSON["quoteAuthor"] else {
-                        callback(false, nil)
-                        return
-                }
-                
-                getImage { (data) in
-                    guard let data = data else {
-                        callback(false, nil)
-                        return
-                        
-                    }
-                    let quote = Quote(text: text, author: author, imageData: data)
-                    callback(true, quote)
-                }
+                let quote = Quote(text: text, author: author, imageData: data)
+                callback(true, quote)
+            }
             
             
             
