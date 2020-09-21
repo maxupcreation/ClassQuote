@@ -1,22 +1,18 @@
 //
-//  ClassQuoteTests.swift
+//  QuoteServiceTests.swift
 //  ClassQuoteTests
 //
-//  Created by Maxime on 11/09/2020.
+//  Created by Maxime on 16/09/2020.
 //  Copyright © 2020 Maxime. All rights reserved.
 //
 
 import XCTest
-
-import XCTest
 @testable import ClassQuote
 
-class ClassQuoteTests: XCTestCase {
+class QuoteServiceTests: XCTestCase {
     func testGetQuoteShouldPostFailedCallback() {
         // Given
-        let quoteService = QuoteService(
-            quoteSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error),
-            imageSession: URLSessionFake(data: nil, response: nil, error: nil))
+        let quoteService = QuoteService(session: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error), imageSession: URLSessionFake(data: nil, response: nil, error: nil))
 
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -33,7 +29,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedCallbackIfNoData() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(data: nil, response: nil, error: nil),
+            session: URLSessionFake(data: nil, response: nil, error: nil),
             imageSession: URLSessionFake(data: nil, response: nil, error: nil))
 
         // When
@@ -51,7 +47,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedCallbackIfIncorrectResponse() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteCorrectData,
                 response: FakeResponseData.responseKO,
                 error: nil),
@@ -72,7 +68,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedCallbackIfIncorrectData() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteIncorrectData,
                 response: FakeResponseData.responseOK,
                 error: nil),
@@ -93,7 +89,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedNotificationIfNoPictureData() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteCorrectData,
                 response: FakeResponseData.responseOK,
                 error: nil),
@@ -114,7 +110,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedNotificationIfErrorWhileRetrievingPicture() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteCorrectData,
                 response: FakeResponseData.responseOK,
                 error: nil),
@@ -138,7 +134,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostFailedNotificationIfIncorrectResponseWhileRetrievingPicture() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteCorrectData,
                 response: FakeResponseData.responseOK,
                 error: nil),
@@ -162,7 +158,7 @@ class ClassQuoteTests: XCTestCase {
     func testGetQuoteShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         // Given
         let quoteService = QuoteService(
-            quoteSession: URLSessionFake(
+            session: URLSessionFake(
                 data: FakeResponseData.quoteCorrectData,
                 response: FakeResponseData.responseOK,
                 error: nil),
@@ -191,4 +187,5 @@ class ClassQuoteTests: XCTestCase {
 
         wait(for: [expectation], timeout: 0.01)
     }
+
 }

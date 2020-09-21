@@ -1,31 +1,40 @@
 import Foundation
 
+enum NetWorkError : Error {
+    case noData
+    case noResponse
+    case undecodable
+    case noImage
+}
+
 class QuoteService {
     
-    static let shared = QuoteService()
-    private init(){}
     
-    // static var shared = QuoteService()
+   // static var shared = QuoteService()
     // private init(){}
     
-    static let quoteUrl = URL(string: "https://api.forismatic.com/api/1.0/")!
-    static let pictureUrl = URL(string: "https://source.unsplash.com/random/1000x1000")!
-    static var session = URLSession(configuration: .default)
-    static var imageSession = URLSession(configuration: .default)
+    init(session : URLSession = URLSession(configuration: .default) , imageSession : URLSession = URLSession(configuration: .default)){
+        self.session = session
+        self.imageSession = imageSession
+    }
     
-    static func getQuote(callback: @escaping (Bool, Quote?) -> Void)  {
-        let request = createQuoteRequest()
+ 
+    
+   private let session : URLSession
+  private let  imageSession : URLSession
+    
+    func getQuote(callback: @escaping (Result<Quote, NetWorkError>) -> Void)  {
+        guard let request = createQuoteRequest() else { return }
         
         let task = session.dataTask(with: request) { (data, response, error) in
             
             guard let data = data, error == nil else {
-                callback(false, nil)
+                callback(.failure(.noData))
                 return }
             
             
-            callback(false, nil)
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                callback(false, nil)
+                callback(.failure(.noResponse))
                 return
             }
             
@@ -33,18 +42,18 @@ class QuoteService {
             guard let responseJSON = try? JSONDecoder().decode([String: String].self, from: data),
                 let text = responseJSON["quoteText"],
                 let author = responseJSON["quoteAuthor"] else {
-                    callback(false, nil)
+                    callback(.failure(.undecodable))
                     return
             }
             
-            getImage { (data) in
+            self.getImage { (data) in
                 guard let data = data else {
-                    callback(false, nil)
+                    callback(.failure(.noImage))
                     return
                     
                 }
                 let quote = Quote(text: text, author: author, imageData: data)
-                callback(true, quote)
+                callback(.success(quote))
             }
             
             
@@ -53,7 +62,11 @@ class QuoteService {
         task.resume()
     }
     
-    private static func createQuoteRequest() -> URLRequest {
+    private func createQuoteRequest() -> URLRequest? {
+ 
+        guard let quoteUrl = URL(string: "https://api.forismatic.com/api/1.0/") else {
+            return nil
+        }
         var request = URLRequest(url: quoteUrl)
         request.httpMethod = "POST"
         
@@ -63,9 +76,13 @@ class QuoteService {
         return request
     }
     
-    private static func getImage(completionHandler: @escaping ((Data?) -> Void)) {
+    private func getImage(completionHandler: @escaping ((Data?) -> Void)) {
+
+        guard let pictureUrl = URL(string: "https://source.unsplash.com/random/1000x1000") else {
+            return
+        }
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: QuoteService.pictureUrl) { (data, response, error) in
+        let task = session.dataTask(with:pictureUrl) { (data, response, error) in
             if let data = data, error == nil {
                 if let response = response as? HTTPURLResponse, response.statusCode == 200 {
                     completionHandler(data)

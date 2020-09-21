@@ -33,23 +33,6 @@ class FakeResponseData {
     // MARK: - Error
     class QuoteError: Error {}
     static let error = QuoteError()
+
+
 }
-
-func testGetQuoteShouldPostFailedCallbackIfError() {
-    // Given
-    let quoteService = QuoteService()
-        quoteSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.error),
-        imageSession: URLSessionFake(data: nil, response: nil, error: nil))
-
-    // When
-    let expectation = XCTestExpectation(description: "Wait for queue change.")
-    quoteService.getQuote { (success, quote) in
-        // Then
-        XCTAssertFalse(success)
-        XCTAssertNil(quote)
-        expectation.fulfill()
-    }
-
-    wait(for: [expectation], timeout: 0.01)
-}
-
