@@ -12,6 +12,7 @@
 		8FA393DC25121FA1000D0AF4 /* ClassQuoteTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 9C7F31EC250B76F900900F05 /* ClassQuoteTests.xctest */; };
 		8FA393DE2512397D000D0AF4 /* QuoteServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA393DD2512397D000D0AF4 /* QuoteServiceTests.swift */; };
 		8FA393E025123A38000D0AF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA393DF25123A38000D0AF4 /* Assets.xcassets */; };
+		8FA3942F2518EBA8000D0AF4 /* ClassQuote.app in Resources */ = {isa = PBXBuildFile; fileRef = 9C738A152502723D0042C326 /* ClassQuote.app */; };
 		9C738A192502723D0042C326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C738A182502723D0042C326 /* AppDelegate.swift */; };
 		9C738A1B2502723D0042C326 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C738A1A2502723D0042C326 /* SceneDelegate.swift */; };
 		9C738A1D2502723D0042C326 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C738A1C2502723D0042C326 /* ViewController.swift */; };
@@ -240,6 +241,7 @@
 				9C738A28250272420042C326 /* LaunchScreen.storyboard in Resources */,
 				9C738A25250272420042C326 /* Assets.xcassets in Resources */,
 				8FA393DB25121FA1000D0AF4 /* ClassQuoteTests.xctest in Resources */,
+				8FA3942F2518EBA8000D0AF4 /* ClassQuote.app in Resources */,
 				9C738A202502723D0042C326 /* Main.storyboard in Resources */,
 				8FA393E025123A38000D0AF4 /* Assets.xcassets in Resources */,
 			);
